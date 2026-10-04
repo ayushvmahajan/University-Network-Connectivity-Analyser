@@ -1,0 +1,1194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Network Connectivity Analyser</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-network-wired"></i>
+            </div>
+            <div>
+                <h2>UniNet</h2>
+                <span>Network Analyser</span>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#dashboard" class="nav-link active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </a>
+
+            <a href="#topology" class="nav-link">
+                <i class="fa-solid fa-diagram-project"></i>
+                Network Topology
+            </a>
+
+            <a href="#analyser" class="nav-link">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                Connectivity Analyzer
+            </a>
+
+            <a href="#devices" class="nav-link">
+                <i class="fa-solid fa-server"></i>
+                Devices
+            </a>
+
+            <a href="#departments" class="nav-link">
+                <i class="fa-solid fa-building"></i>
+                Departments
+            </a>
+
+            <a href="#faults" class="nav-link">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Fault Detection
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <i class="fa-solid fa-chart-area"></i>
+                Analytics
+            </a>
+
+            <a href="#alerts" class="nav-link">
+                <i class="fa-solid fa-bell"></i>
+                Alerts
+            </a>
+
+            <a href="#reports" class="nav-link">
+                <i class="fa-solid fa-file-lines"></i>
+                Reports
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <div class="user">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Network Admin</small>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div class="mobile-logo">
+                <i class="fa-solid fa-network-wired"></i>
+                UniNet
+            </div>
+
+            <div class="search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="globalSearch"
+                       placeholder="Search devices, IP addresses...">
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn" onclick="showNotifications()">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+
+                <button class="icon-btn" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">UNIVERSITY NETWORK</span>
+                    <h1>Network Dashboard</h1>
+                    <p>Monitor and analyse your university network in real time.</p>
+                </div>
+
+                <div class="live-status">
+                    <span class="pulse"></span>
+                    Live Monitoring
+                </div>
+            </div>
+
+
+            <!-- STAT CARDS -->
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Network Health</span>
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="healthValue">98.6%</h2>
+
+                    <div class="progress">
+                        <div class="progress-bar green-bg" style="width:98.6%"></div>
+                    </div>
+
+                    <small class="positive">
+                        <i class="fa-solid fa-arrow-up"></i> 2.4% from last week
+                    </small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Connected Devices</span>
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-laptop"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="deviceCount">1,284</h2>
+
+                    <small>
+                        <i class="fa-solid fa-circle-check green-text"></i>
+                        1,276 online
+                    </small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Network Latency</span>
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="latencyValue">18 ms</h2>
+
+                    <small class="positive">
+                        <i class="fa-solid fa-arrow-down"></i>
+                        4 ms improvement
+                    </small>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Bandwidth Usage</span>
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="bandwidthValue">68%</h2>
+
+                    <div class="progress">
+                        <div class="progress-bar orange-bg" style="width:68%"></div>
+                    </div>
+
+                    <small>680 Mbps / 1 Gbps</small>
+                </div>
+
+            </div>
+
+
+            <!-- MAIN DASHBOARD GRID -->
+            <div class="dashboard-grid">
+
+                <div class="panel traffic-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Network Traffic</h3>
+                            <p>Real-time bandwidth monitoring</p>
+                        </div>
+
+                        <select id="trafficRange">
+                            <option>Last Hour</option>
+                            <option>Today</option>
+                            <option>Last 7 Days</option>
+                        </select>
+                    </div>
+
+                    <div class="chart">
+                        <div class="chart-y">
+                            <span>1 Gbps</span>
+                            <span>750 Mbps</span>
+                            <span>500 Mbps</span>
+                            <span>250 Mbps</span>
+                            <span>0</span>
+                        </div>
+
+                        <div class="chart-area" id="trafficChart">
+
+                            <div class="grid-line line1"></div>
+                            <div class="grid-line line2"></div>
+                            <div class="grid-line line3"></div>
+                            <div class="grid-line line4"></div>
+
+                            <svg viewBox="0 0 800 280"
+                                 preserveAspectRatio="none">
+
+                                <defs>
+                                    <linearGradient id="areaGradient"
+                                                    x1="0" y1="0"
+                                                    x2="0" y2="1">
+                                        <stop offset="0%"
+                                              stop-color="#27d3a2"
+                                              stop-opacity=".35"/>
+                                        <stop offset="100%"
+                                              stop-color="#27d3a2"
+                                              stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <path
+                                    d="M0,220
+                                       C60,190 80,205 130,160
+                                       S190,120 240,145
+                                       S300,185 350,130
+                                       S410,85 460,115
+                                       S520,145 570,95
+                                       S640,120 680,70
+                                       S740,80 800,45
+                                       L800,280 L0,280 Z"
+                                    fill="url(#areaGradient)"
+                                />
+
+                                <path
+                                    d="M0,220
+                                       C60,190 80,205 130,160
+                                       S190,120 240,145
+                                       S300,185 350,130
+                                       S410,85 460,115
+                                       S520,145 570,95
+                                       S640,120 680,70
+                                       S740,80 800,45"
+                                    fill="none"
+                                    stroke="#27d3a2"
+                                    stroke-width="4"
+                                />
+
+                            </svg>
+
+                            <div class="chart-labels">
+                                <span>08:00</span>
+                                <span>09:00</span>
+                                <span>10:00</span>
+                                <span>11:00</span>
+                                <span>12:00</span>
+                                <span>13:00</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- NETWORK HEALTH -->
+                <div class="panel health-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <h3>Network Health</h3>
+                            <p>Overall infrastructure status</p>
+                        </div>
+                    </div>
+
+                    <div class="health-circle">
+                        <div>
+                            <strong>98.6%</strong>
+                            <span>Excellent</span>
+                        </div>
+                    </div>
+
+                    <div class="health-items">
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-circle green-text"></i>
+                                Routers
+                            </span>
+                            <strong>12/12</strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-circle green-text"></i>
+                                Switches
+                            </span>
+                            <strong>48/50</strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-circle yellow-text"></i>
+                                Wi-Fi APs
+                            </span>
+                            <strong>74/76</strong>
+                        </div>
+
+                        <div>
+                            <span>
+                                <i class="fa-solid fa-circle green-text"></i>
+                                Servers
+                            </span>
+                            <strong>18/18</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT ALERTS -->
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Recent Network Alerts</h3>
+                        <p>Latest events detected by the system</p>
+                    </div>
+
+                    <button class="outline-btn"
+                            onclick="scrollToSection('alerts')">
+                        View All
+                    </button>
+
+                </div>
+
+                <div class="alerts-table">
+
+                    <div class="alert-row">
+                        <div class="alert-icon critical">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+
+                        <div class="alert-info">
+                            <strong>Switch CS-02 disconnected</strong>
+                            <span>Computer Science Department</span>
+                        </div>
+
+                        <span class="severity critical-text">Critical</span>
+                        <span class="time">2 min ago</span>
+                    </div>
+
+
+                    <div class="alert-row">
+                        <div class="alert-icon warning">
+                            <i class="fa-solid fa-exclamation"></i>
+                        </div>
+
+                        <div class="alert-info">
+                            <strong>High latency detected</strong>
+                            <span>Mechanical Department</span>
+                        </div>
+
+                        <span class="severity warning-text">Warning</span>
+                        <span class="time">8 min ago</span>
+                    </div>
+
+
+                    <div class="alert-row">
+                        <div class="alert-icon success">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+                        <div class="alert-info">
+                            <strong>Router RT-05 recovered</strong>
+                            <span>Administration Building</span>
+                        </div>
+
+                        <span class="severity success-text">Resolved</span>
+                        <span class="time">14 min ago</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOPOLOGY -->
+        <section id="topology" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">INFRASTRUCTURE</span>
+                    <h1>Network Topology</h1>
+                    <p>Visual representation of the university network.</p>
+                </div>
+            </div>
+
+            <div class="panel topology-panel">
+
+                <div class="topology-toolbar">
+                    <div>
+                        <span class="legend connected"></span> Connected
+                        <span class="legend unstable"></span> Unstable
+                        <span class="legend disconnected"></span> Disconnected
+                    </div>
+
+                    <button class="primary-btn" onclick="refreshTopology()">
+                        <i class="fa-solid fa-rotate"></i>
+                        Refresh
+                    </button>
+                </div>
+
+
+                <div class="topology">
+
+                    <div class="network-node internet node-internet"
+                         onclick="showDevice('Internet Gateway','WAN','Connected')">
+                        <i class="fa-solid fa-globe"></i>
+                        <strong>Internet</strong>
+                        <small>Gateway</small>
+                    </div>
+
+                    <div class="connection c1"></div>
+
+                    <div class="network-node router node-router"
+                         onclick="showDevice('Main Router','Router','Connected')">
+                        <i class="fa-solid fa-router"></i>
+                        <strong>Main Router</strong>
+                        <small>192.168.1.1</small>
+                    </div>
+
+                    <div class="connection c2"></div>
+
+                    <div class="network-node switch node-switch"
+                         onclick="showDevice('Core Switch','Switch','Connected')">
+                        <i class="fa-solid fa-server"></i>
+                        <strong>Core Switch</strong>
+                        <small>Core Network</small>
+                    </div>
+
+
+                    <div class="branches">
+
+                        <div class="branch">
+                            <div class="branch-line"></div>
+
+                            <div class="network-node department"
+                                 onclick="showDevice('Computer Science','Department','Connected')">
+                                <i class="fa-solid fa-computer"></i>
+                                <strong>Computer Science</strong>
+                                <small>245 Devices</small>
+                            </div>
+                        </div>
+
+
+                        <div class="branch">
+                            <div class="branch-line"></div>
+
+                            <div class="network-node department"
+                                 onclick="showDevice('Electronics','Department','Connected')">
+                                <i class="fa-solid fa-microchip"></i>
+                                <strong>Electronics</strong>
+                                <small>186 Devices</small>
+                            </div>
+                        </div>
+
+
+                        <div class="branch">
+                            <div class="branch-line"></div>
+
+                            <div class="network-node department unstable-node"
+                                 onclick="showDevice('Mechanical','Department','Unstable')">
+                                <i class="fa-solid fa-gears"></i>
+                                <strong>Mechanical</strong>
+                                <small>164 Devices</small>
+                            </div>
+                        </div>
+
+
+                        <div class="branch">
+                            <div class="branch-line"></div>
+
+                            <div class="network-node department"
+                                 onclick="showDevice('Library','Department','Connected')">
+                                <i class="fa-solid fa-book"></i>
+                                <strong>Library</strong>
+                                <small>128 Devices</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYSER -->
+        <section id="analyser" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">DIAGNOSTICS</span>
+                    <h1>Connectivity Analyzer</h1>
+                    <p>Test connectivity between university network devices.</p>
+                </div>
+            </div>
+
+
+            <div class="panel analyzer-box">
+
+                <div class="input-grid">
+
+                    <div class="input-group">
+                        <label>Source Device / IP</label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-computer"></i>
+                            <input id="sourceIP"
+                                   value="192.168.10.25"
+                                   placeholder="Enter source IP">
+                        </div>
+                    </div>
+
+
+                    <div class="arrow-between">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label>Destination Device / IP</label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-server"></i>
+                            <input id="destinationIP"
+                                   value="8.8.8.8"
+                                   placeholder="Enter destination IP">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <button class="primary-btn analyze-btn"
+                        onclick="analyzeConnection()">
+
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    Analyze Connectivity
+
+                </button>
+
+
+                <div id="analysisResult" class="analysis-result hidden">
+
+                    <div class="result-status">
+                        <div class="success-circle">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+                        <div>
+                            <strong>Connection Successful</strong>
+                            <span>Destination is reachable</span>
+                        </div>
+                    </div>
+
+
+                    <div class="result-grid">
+
+                        <div>
+                            <span>Latency</span>
+                            <strong id="resultLatency">18 ms</strong>
+                        </div>
+
+                        <div>
+                            <span>Packet Loss</span>
+                            <strong>0.2%</strong>
+                        </div>
+
+                        <div>
+                            <span>Hops</span>
+                            <strong>7</strong>
+                        </div>
+
+                        <div>
+                            <span>Bandwidth</span>
+                            <strong>942 Mbps</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="network-path">
+
+                        <h4>Network Path</h4>
+
+                        <div class="path">
+                            <span>PC-25</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span>Lab Switch</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span>Dept. Router</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span>Core Switch</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span>Internet</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEVICES -->
+        <section id="devices" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">INFRASTRUCTURE</span>
+                    <h1>Network Devices</h1>
+                    <p>Monitor all connected network devices.</p>
+                </div>
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h3>Device Inventory</h3>
+                        <p>Live device status</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="scanDevices()">
+                        <i class="fa-solid fa-radar"></i>
+                        Scan Network
+                    </button>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Device</th>
+                                <th>Type</th>
+                                <th>IP Address</th>
+                                <th>Location</th>
+                                <th>Status</th>
+                                <th>Latency</th>
+                                <th>Usage</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="deviceTable">
+
+                            <tr>
+                                <td>
+                                    <strong>RT-CORE-01</strong>
+                                </td>
+                                <td>Router</td>
+                                <td>192.168.1.1</td>
+                                <td>Main Server Room</td>
+                                <td><span class="badge online">Online</span></td>
+                                <td>4 ms</td>
+                                <td>62%</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>SW-CS-01</strong>
+                                </td>
+                                <td>Switch</td>
+                                <td>192.168.10.2</td>
+                                <td>Computer Science</td>
+                                <td><span class="badge online">Online</span></td>
+                                <td>8 ms</td>
+                                <td>74%</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>SW-CS-02</strong>
+                                </td>
+                                <td>Switch</td>
+                                <td>192.168.10.3</td>
+                                <td>Computer Science</td>
+                                <td><span class="badge offline">Offline</span></td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>RT-MECH-01</strong>
+                                </td>
+                                <td>Router</td>
+                                <td>192.168.30.1</td>
+                                <td>Mechanical</td>
+                                <td><span class="badge unstable">Unstable</span></td>
+                                <td>86 ms</td>
+                                <td>91%</td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>AP-LIB-04</strong>
+                                </td>
+                                <td>Wi-Fi AP</td>
+                                <td>192.168.50.24</td>
+                                <td>Library</td>
+                                <td><span class="badge online">Online</span></td>
+                                <td>12 ms</td>
+                                <td>54%</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DEPARTMENTS -->
+        <section id="departments" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">UNIVERSITY</span>
+                    <h1>Departments</h1>
+                    <p>Network health across university departments.</p>
+                </div>
+            </div>
+
+
+            <div class="department-grid">
+
+                <div class="department-card">
+                    <div class="dept-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Computer Science</h3>
+                    <strong>98%</strong>
+                    <span class="dept-status online-text">Healthy</span>
+                    <div class="mini-progress"><span style="width:98%"></span></div>
+                    <small>245 devices</small>
+                </div>
+
+
+                <div class="department-card">
+                    <div class="dept-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <h3>Electronics</h3>
+                    <strong>96%</strong>
+                    <span class="dept-status online-text">Healthy</span>
+                    <div class="mini-progress"><span style="width:96%"></span></div>
+                    <small>186 devices</small>
+                </div>
+
+
+                <div class="department-card warning-card">
+                    <div class="dept-icon"><i class="fa-solid fa-gears"></i></div>
+                    <h3>Mechanical</h3>
+                    <strong>82%</strong>
+                    <span class="dept-status warning-text">Needs Attention</span>
+                    <div class="mini-progress"><span style="width:82%"></span></div>
+                    <small>164 devices</small>
+                </div>
+
+
+                <div class="department-card">
+                    <div class="dept-icon"><i class="fa-solid fa-book"></i></div>
+                    <h3>Library</h3>
+                    <strong>99%</strong>
+                    <span class="dept-status online-text">Healthy</span>
+                    <div class="mini-progress"><span style="width:99%"></span></div>
+                    <small>128 devices</small>
+                </div>
+
+
+                <div class="department-card">
+                    <div class="dept-icon"><i class="fa-solid fa-building"></i></div>
+                    <h3>Administration</h3>
+                    <strong>97%</strong>
+                    <span class="dept-status online-text">Healthy</span>
+                    <div class="mini-progress"><span style="width:97%"></span></div>
+                    <small>94 devices</small>
+                </div>
+
+
+                <div class="department-card">
+                    <div class="dept-icon"><i class="fa-solid fa-house"></i></div>
+                    <h3>Student Hostel</h3>
+                    <strong>93%</strong>
+                    <span class="dept-status online-text">Healthy</span>
+                    <div class="mini-progress"><span style="width:93%"></span></div>
+                    <small>326 devices</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FAULT DETECTION -->
+        <section id="faults" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">DIAGNOSTICS</span>
+                    <h1>Fault Detection</h1>
+                    <p>Identify and troubleshoot network problems.</p>
+                </div>
+            </div>
+
+
+            <div class="fault-grid">
+
+                <div class="fault-card critical-fault">
+
+                    <div class="fault-header">
+                        <div class="fault-icon">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+
+                        <span class="severity critical-text">Critical</span>
+                    </div>
+
+                    <h3>Switch CS-02 Offline</h3>
+
+                    <p>
+                        Network switch is not responding to ping requests.
+                    </p>
+
+                    <div class="fault-details">
+                        <span>Affected: Computer Science Lab 2</span>
+                        <span>Detected: 2 minutes ago</span>
+                    </div>
+
+                    <button onclick="resolveFault(this)">
+                        Investigate
+                    </button>
+
+                </div>
+
+
+                <div class="fault-card warning-fault">
+
+                    <div class="fault-header">
+                        <div class="fault-icon">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+
+                        <span class="severity warning-text">Warning</span>
+                    </div>
+
+                    <h3>High Latency</h3>
+
+                    <p>
+                        Mechanical department latency is above normal.
+                    </p>
+
+                    <div class="fault-details">
+                        <span>Current: 86 ms</span>
+                        <span>Normal: &lt;30 ms</span>
+                    </div>
+
+                    <button onclick="resolveFault(this)">
+                        Investigate
+                    </button>
+
+                </div>
+
+
+                <div class="fault-card warning-fault">
+
+                    <div class="fault-header">
+                        <div class="fault-icon">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+
+                        <span class="severity warning-text">Warning</span>
+                    </div>
+
+                    <h3>Wi-Fi Congestion</h3>
+
+                    <p>
+                        High number of connected users detected.
+                    </p>
+
+                    <div class="fault-details">
+                        <span>Affected: Hostel Block A</span>
+                        <span>Usage: 94%</span>
+                    </div>
+
+                    <button onclick="resolveFault(this)">
+                        Investigate
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">ANALYTICS</span>
+                    <h1>Network Analytics</h1>
+                    <p>Analyse network performance and usage.</p>
+                </div>
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="metric-card">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download</span>
+                    <strong>742 Mbps</strong>
+                    <small>+12.4%</small>
+                </div>
+
+                <div class="metric-card">
+                    <i class="fa-solid fa-upload"></i>
+                    <span>Upload</span>
+                    <strong>382 Mbps</strong>
+                    <small>+8.2%</small>
+                </div>
+
+                <div class="metric-card">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Average Latency</span>
+                    <strong>18 ms</strong>
+                    <small>-4.8%</small>
+                </div>
+
+                <div class="metric-card">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Packet Loss</span>
+                    <strong>0.2%</strong>
+                    <small>-0.1%</small>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALERTS -->
+        <section id="alerts" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">MONITORING</span>
+                    <h1>Network Alerts</h1>
+                    <p>Recent and active network notifications.</p>
+                </div>
+            </div>
+
+
+            <div class="panel">
+
+                <div class="full-alert critical">
+                    <div class="alert-icon critical">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+
+                    <div>
+                        <strong>Switch CS-02 disconnected</strong>
+                        <p>Computer Science Department • 2 minutes ago</p>
+                    </div>
+
+                    <span>Critical</span>
+                </div>
+
+
+                <div class="full-alert warning">
+                    <div class="alert-icon warning">
+                        <i class="fa-solid fa-exclamation"></i>
+                    </div>
+
+                    <div>
+                        <strong>High latency detected</strong>
+                        <p>Mechanical Department • 8 minutes ago</p>
+                    </div>
+
+                    <span>Warning</span>
+                </div>
+
+
+                <div class="full-alert success">
+                    <div class="alert-icon success">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <div>
+                        <strong>Router RT-05 recovered</strong>
+                        <p>Administration Building • 14 minutes ago</p>
+                    </div>
+
+                    <span>Resolved</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+        <section id="reports" class="page-section">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">REPORTING</span>
+                    <h1>Network Reports</h1>
+                    <p>Generate network analysis reports.</p>
+                </div>
+            </div>
+
+
+            <div class="report-box">
+
+                <div class="report-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+
+                <div>
+                    <h2>Network Health Report</h2>
+                    <p>
+                        Generate a summary containing network health,
+                        devices, connectivity tests, alerts and recommendations.
+                    </p>
+                </div>
+
+                <button class="primary-btn"
+                        onclick="generateReport()">
+
+                    <i class="fa-solid fa-download"></i>
+                    Generate Report
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>
+                University Network Connectivity Analyser
+                © 2026 | Academic Project
+            </p>
+        </footer>
+
+    </main>
+
+</div>
+
+
+<!-- DEVICE MODAL -->
+<div id="deviceModal" class="modal">
+
+    <div class="modal-content">
+
+        <button class="close-modal" onclick="closeModal()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-icon">
+            <i class="fa-solid fa-server"></i>
+        </div>
+
+        <h2 id="modalDeviceName">Device</h2>
+
+        <p id="modalDeviceType">Network Device</p>
+
+        <div class="modal-status" id="modalStatus">
+            Connected
+        </div>
+
+        <div class="modal-info">
+
+            <div>
+                <span>IP Address</span>
+                <strong>192.168.1.10</strong>
+            </div>
+
+            <div>
+                <span>Latency</span>
+                <strong>18 ms</strong>
+            </div>
+
+            <div>
+                <span>Bandwidth</span>
+                <strong>680 Mbps</strong>
+            </div>
+
+            <div>
+                <span>Uptime</span>
+                <strong>99.8%</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div id="toast" class="toast">
+    <i class="fa-solid fa-check"></i>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
